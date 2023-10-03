@@ -25,3 +25,9 @@ body {
 h1 {
 	font-size: 3.3rem;
 }
+
+#app {
+	width: min(95%, 1000px);
+	margin-inline: auto;
+	position: relative;
+}
