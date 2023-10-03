@@ -1,17 +1,32 @@
 <script setup>
+import { onMounted, ref } from "vue";
+
 // Components
 import NavbarLink from "./NavbarLink.vue";
+import Submenu from "./Submenu.vue";
 
 // Outside data
 import sublinks from "../data/data";
+
+// Reactive data
+const selectedNavbarOption = ref(sublinks[0]);
+
+// Obtain the navbar's height to fix the submenu's position
+const navbarRef = ref(null);
+const navbarHeight = ref(0);
+onMounted(() => {
+	navbarHeight.value = navbarRef.value.offsetHeight;
+	console.log(navbarHeight.value);
+});
 </script>
 
 <template>
-	<nav class="navbar">
+	<nav class="navbar" ref="navbarRef">
 		<span class="navbar__logo">strapi</span>
 		<ul class="navbar__links-list">
 			<NavbarLink v-for="{ pageId, page } in sublinks" :key="pageId" :url="page" :text="page" />
 		</ul>
+		<Submenu :selected-option="selectedNavbarOption" :navbar-height="navbarHeight" />
 	</nav>
 </template>
 
