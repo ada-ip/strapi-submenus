@@ -1,0 +1,27 @@
+*,
+*::before,
+*::after {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	--primary-color: #121180;
+	--primary-color-light: #4945ff;
+	--primary-color-dark: #1c1c4e;
+	--white-color: #fff;
+	--light-text: #c0c0cf;
+	--darker-text: #8e8ea9;
+	--darker-bground: #1c1c4e;
+}
+
+body {
+	background-color: var(--primary-color);
+	color: var(--white-color);
+	font-family: "Poppins", sans-serif;
+}
+
+h1 {
+	font-size: 3.3rem;
+}

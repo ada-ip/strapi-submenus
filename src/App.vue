@@ -1,7 +1,19 @@
-<script setup></script>
+<script setup>
+import Navbar from "./components/Navbar.vue";
+import Hero from "./components/Hero.vue";
+</script>
 
 <template>
-	<h1>Strapi submenus</h1>
+	<Navbar />
+	<main class="main-content">
+		<Hero />
+	</main>
 </template>
 
-<style scoped></style>
+<style scoped>
+.main-content {
+	min-height: 100vh;
+	display: grid;
+	place-items: center;
+}
+</style>
