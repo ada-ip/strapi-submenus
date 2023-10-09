@@ -16,17 +16,31 @@ const navbarRef = ref(null);
 const navbarHeight = ref(0);
 onMounted(() => {
 	navbarHeight.value = navbarRef.value.offsetHeight;
-	console.log(navbarHeight.value);
 });
+
+// Navbar Submenu state handler
+const isSubmenuHidden = ref(true);
+const displaySubmenu = () => {
+	isSubmenuHidden.value = false;
+};
+const hideSubmenu = (e) => {
+	isSubmenuHidden.value = true;
+};
 </script>
 
 <template>
-	<nav class="navbar" ref="navbarRef">
+	<nav class="navbar" ref="navbarRef" @mouseleave="hideSubmenu">
 		<span class="navbar__logo">strapi</span>
 		<ul class="navbar__links-list">
-			<NavbarLink v-for="{ pageId, page } in sublinks" :key="pageId" :url="page" :text="page" />
+			<NavbarLink
+				v-for="{ pageId, page } in sublinks"
+				@mouseenter="displaySubmenu"
+				:key="pageId"
+				:url="page"
+				:text="page"
+				:id="pageId" />
 		</ul>
-		<Submenu :selected-option="selectedNavbarOption" :navbar-height="navbarHeight" />
+		<Submenu :selected-option="selectedNavbarOption" :navbar-height="navbarHeight" :isHidden="isSubmenuHidden" />
 	</nav>
 </template>
 

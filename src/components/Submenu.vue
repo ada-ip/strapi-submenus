@@ -11,12 +11,16 @@ defineProps({
 	navbarHeight: {
 		type: Number,
 		required: true
+	},
+	isHidden: {
+		type: Boolean,
+		default: true
 	}
 });
 </script>
 
 <template>
-	<div class="navbar-submenu" :style="{ top: `${navbarHeight + 20}px` }">
+	<div class="navbar-submenu" :class="{ 'navbar-submenu_hidden': isHidden }" :style="{ top: `${navbarHeight}px` }">
 		<p class="navbar-submenu__header">Products</p>
 		<ul class="navbar-submenu__links-list">
 			<SubmenuLink v-for="link in selectedOption.links" :key="link.id" :submenu-option="link" />
@@ -31,6 +35,10 @@ defineProps({
 	padding: 2.5rem 3rem;
 	background-color: var(--white-color);
 	border-radius: 10px;
+}
+
+.navbar-submenu_hidden {
+	display: none;
 }
 
 .navbar-submenu__header {
